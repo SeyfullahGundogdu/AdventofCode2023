@@ -1,5 +1,4 @@
 use std::{fs::File, io::Read};
-use std::ops::RangeInclusive;
 
 fn main() {
     // Read the contents of the file into a string
@@ -22,7 +21,7 @@ fn main() {
     // Part 1
     // Iterate through the remaining chunks to apply mappings and update the seed values
     let p1_ans = parse_chunks_part1(&chunks, &initial_seeds);
-
+    println!("{}", p1_ans);
     // Part 2
     // now our seeds are pair of starts and ranges,
     // rewrite initial_seeds array accordingly
@@ -34,7 +33,6 @@ fn main() {
     for i in (0..seed_ranges.len()).step_by(2) {
         initial_seeds.push((seed_ranges[i], seed_ranges[i + 1]));
     }
-    let p2_ans = parse_chunks_part2(&chunks, &initial_seeds);
 }
 
 fn parse_chunks_part1(chunks: &[&str], initial_seeds: &Vec<u64>) -> u64 {
