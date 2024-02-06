@@ -1,8 +1,4 @@
-use std::{
-    collections::HashMap,
-    fs::File,
-    io::Read,
-};
+use std::{collections::HashMap, fs::File, io::Read};
 
 fn main() {
     let word_to_number = HashMap::from([
@@ -41,15 +37,15 @@ fn main() {
         for i in word_to_number.keys() {
             if let Some(j) = line.find(i) {
                 if j < first.1 {
-                    first = (*word_to_number.get(i).unwrap(),j)
-                }    
+                    first = (*word_to_number.get(i).unwrap(), j)
+                }
             }
         }
         for i in word_to_number.keys() {
-            if let Some(j) = line.rfind(i){
+            if let Some(j) = line.rfind(i) {
                 if j as i32 > last.1 {
-                    last = (*word_to_number.get(i).unwrap(),j as i32)
-                }    
+                    last = (*word_to_number.get(i).unwrap(), j as i32)
+                }
             }
         }
         sum += first.0 * 10 + last.0

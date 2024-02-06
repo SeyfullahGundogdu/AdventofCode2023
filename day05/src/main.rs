@@ -42,8 +42,8 @@ fn main() {
     }
     let b = Instant::now();
     let p2_ans = part2_solution(&maps, &initial_seeds);
-    println!("Part 2 answer: {:?}",b.elapsed());
-    println!("Part 2 answer: {}",p2_ans);
+    println!("Part 2 answer: {:?}", b.elapsed());
+    println!("Part 2 answer: {}", p2_ans);
 }
 
 fn part1_solution(maps: &[Vec<(u64, u64, u64)>], initial_seeds: &[u64]) -> u64 {
@@ -65,9 +65,8 @@ fn part1_solution(maps: &[Vec<(u64, u64, u64)>], initial_seeds: &[u64]) -> u64 {
     *seeds.iter().min().unwrap()
 }
 
-
 // need fixing, very ugly rust code
-// crabs are gonna hunt me down 
+// crabs are gonna hunt me down
 fn part2_solution(maps: &[Vec<(u64, u64, u64)>], initial_seeds: &[(u64, u64)]) -> u64 {
     let mut seeds = initial_seeds.to_owned();
     let mut mapped_results: Vec<(u64, u64)> = vec![];
@@ -78,22 +77,21 @@ fn part2_solution(maps: &[Vec<(u64, u64, u64)>], initial_seeds: &[(u64, u64)]) -
             let offset = seeds[0].1;
             for mapping in map {
                 let end = mapping.1 + mapping.2;
-                if start < end  && start >= mapping.1 {
+                if start < end && start >= mapping.1 {
                     in_range = true;
                     // source range is entirely covered in range map
                     if start + offset < end {
                         mapped_results.push((start + mapping.0 - mapping.1, offset));
                         let _ = seeds.remove(0);
                         break;
-                    }
-                    else {
+                    } else {
                         let new_offset = end - start;
-                        mapped_results.push((start + mapping.0 - mapping.1,new_offset));
+                        mapped_results.push((start + mapping.0 - mapping.1, new_offset));
                         seeds.push((end, start + offset - end));
                         seeds.remove(0);
                         break;
                     }
-                } 
+                }
                 // source's start is less then range's beginning, end is inside range.
                 else if start + offset < mapping.1 + mapping.2 && start + offset > mapping.1 {
                     in_range = true;

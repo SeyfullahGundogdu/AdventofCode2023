@@ -55,7 +55,7 @@ pub fn parse_line_p2(line: &str) -> u64 {
 /// points gained in each game is the number of plays in which we beat the corresponding distance record
 ///
 /// # Arguments:
-/// 
+///
 /// * `times` - Vector of u64s which corresponds to the total time u can have in each game
 ///
 /// * `distances` - Vector of u64s which corresponds to the record distance we should beat for each game
